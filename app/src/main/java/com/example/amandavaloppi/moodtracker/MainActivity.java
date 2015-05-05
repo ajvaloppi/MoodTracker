@@ -1,5 +1,8 @@
 package com.example.amandavaloppi.moodtracker;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,6 +10,8 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -48,7 +53,13 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent (this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        Calendar now = Calendar.getInstance();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("Amanda", message);
+        editor.commit();
+        //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 }
