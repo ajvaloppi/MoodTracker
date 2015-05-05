@@ -57,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("Amanda", message);
+        editor.putString(now.getTime().toString(), message);
         editor.commit();
         //intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
